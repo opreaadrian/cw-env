@@ -1,0 +1,22 @@
+{
+  "name": "DAPPS_CI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Oprea",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.0.3",
+    "dependo": "^0.1.4",
+    "gulp": "^3.8.11",
+    "gulp-jsdoc": "^0.1.4",
+    "gulp-jshint": "^1.10.0",
+    "jsdoc": "^3.3.0-beta3",
+    "jshint": "^2.6.3",
+    "jshint-stylish": "^1.0.1",
+    "minimist": "^1.1.1"
+  }
+}
