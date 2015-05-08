@@ -17,7 +17,7 @@ echo "Spinning up the production workers, hold on tight!\n"
 
 for worker_number in {1..5} 
 do
-    docker run -d prod --name prod_$worker_number
+    declare prod_worker_$worker_numberdocker=$(docker run -d prod --name prod_$worker_number)
 done
 
 # Spin up HAProxy
