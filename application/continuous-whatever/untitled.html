@@ -1,0 +1,108 @@
+<section data-markdown>
+    # C*
+    ## Continuous Whatever
+    > integration/delivery/deployment
+</section>
+
+<section style="text-align: left;" data-markdown>
+   ## Continuous integration
+
+   Automatically build and test the software on a regular basis(daily builds, per-commit builds).
+
+</section>
+
+<section style="text-align: left;" data-markdown>
+    ## Continuous delivery
+
+    Next step after CI. You trust your build process and tests to provide guarantee of quality. More of a philosophy/commitment to ensure that the code is always release-ready.
+
+    > Customers may not need constant updates.”
+
+</section>
+
+<section style="text-align: left;" data-markdown>
+    ## Continuous deployment
+
+    Next step after CI/CD(1). Delivering features/fixes to the customer as soon as they're ready.
+
+</section>
+
+<section style="text-align: left;">
+    <h1>Where to start?</h1>
+    <ol>
+        <li>Where are we now?</p>
+        <li>What do we want?</li>
+        <li>Why do we want this?</li>
+        <li>How can we implement this process whilst maintaining some form of control over the deployment process?</li>
+        <li>What's the next action?</li>
+    </ol>
+</section>
+
+<section style="text-align: left;" data-markdown>
+    <h2>Main C* components</h2>
+    <ol>
+        <li>Team culture</li>
+        <li>Environments</li>
+        <li>Deployment process</li>
+        <li>Rollback/recovery process</li>
+        <li>Development practices</li>
+    </ol>
+
+    <section style="text-align: left;" data-markdown>
+        ### Team culture
+
+        * Get everyone involved (Devs, DBAs, Managers)
+        * Outline the investment everyone needs to make and what will they get out of it
+
+    </section>
+
+    <section style="text-align: left;" data-markdown>
+        ### Environments
+        * Get a good environment separation
+            + Dedicated *dev* environments.
+            + Dedicated staging environment(s) identical to production for testing the builds.
+        * Dedicated build environment where all integration takes place.
+    </section>
+
+    <section style="text-align: left;" data-markdown>
+        ### Deployment process
+
+        * Automated build integrity-checks
+    </section>
+
+    <section style="text-align: left;" data-markdown>
+        ### Rollback/recovery process
+
+        * Immediate restore from backup
+        * Pre-tested rollback versions(prev-master)
+        * Fallback environments
+            + Previous version stored until current deploy status turns green
+
+    </section>
+    <section style="text-align: left;" data-markdown>
+        ### Development practices
+
+        * Most difficult to tackle
+            + Personal preferences/practices involved
+        * Modular commits
+        * Automated code validation(linting)
+        * Automated testing
+        * Peer review
+    </section>
+</section>
+
+<section style="text-align: left;">
+    ## Steps towards CI
+
+    * Use an issue tracker for everything
+    * Create a separate branch for the work done, tagged with the issue number
+    * Develop on the branch, and continuously test and integrate it
+    * Optional: Push your changes to a rush box(dev box)
+    * When ready, create a pull request for the branch
+    * Merge and release
+        + Deploy to staging
+        + Promote to production
+</section>
+
+
+
