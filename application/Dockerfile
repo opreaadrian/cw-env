@@ -11,5 +11,5 @@ WORKDIR /application
 ADD continuous-whatever/. /application
 
 EXPOSE $APPLICATION_PORT
-
+CMD []
 ENTRYPOINT ["npm", "start"]
