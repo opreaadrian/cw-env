@@ -1,12 +1,63 @@
+zookeeper:
+    image: jplock/zookeeper:3.4.5
+    ports:
+        - "2181"
+mesosmaster:
+    image: redjack/mesos-master:0.21.0
+    hostname: mesosmaster
+    links:
+        - zookeeper:zookeeper
+    environment:
+        - MESOS_ZK=zk://zookeeper:2181/mesos
+        - MESOS_QUORUM=1
+        - MESOS_WORK_DIR=/var/lib/mesos
+        - MESOS_LOG_DIR=/var/log
+    ports:
+        - "5050:5050"
+
+mesosslave:
+    image: redjack/mesos-slave:0.21.0
+    links:
+        - zookeeper:zookeeper
+        - mesosmaster:mesosmaster
+    environment:
+        - MESOS_MASTER=zk://zookeeper:2181/mesos
+        - MESOS_EXECUTOR_REGISTRATION_TIMEOUT=5mins
+        - MESOS_CONTAINERIZERS=docker,mesos
+        - MESOS_ISOLATOR=cgroups/cpu,cgroups/mem
+        - MESOS_LOG_DIR=/var/log
+        - DOCKER_HOST=tcp://192.168.59.103:2376
+        - DOCKER_CERT_PATH=/tmp/.boot2docker/certs/boot2docker-vm
+        - DOCKER_TLS_VERIFY=1
+    volumes:
+        - /Users/adrianoprea/.boot2docker:/tmp/.boot2docker
+        - /usr/local/bin/docker:/usr/bin/docker
+        - /usr/include/sys:/sys:ro
+        - mesosslace-items:/var/log
+    expose:
+        - "5051"
+marathon:
+    image: mesosphere/marathon
+    links:
+    - zookeeper:zookeeper
+    ports:
+    - "8080:8080"
+    # this image does not respect MARATHON_ env variables, so adding the params via command
+    command: --master zk://zookeeper:2181/mesos --zk zk://zookeeper:2181/marathon
+
 jenkins:
     image: opreaadrian/jenkins
     volumes:
         - jenkins-items:/var/jenkins_home
-        - .:/var/jenkins_data
-        - /var/run/docker.sock:/var/run/docker.sock
-        - /usr/bin/docker:/usr/bin/docker
+        - ./jenkins-data:/var/jenkins_data
+        - /Users/adrianoprea/.boot2docker:/var/jenkins_home/.boot2docker
+        - /usr/local/bin/docker:/usr/bin/docker
     ports:
         - "8081:8080"
+    environment:
+        - DOCKER_HOST=tcp://192.168.59.103:2376
+        - DOCKER_CERT_PATH=/var/jenkins_home/.boot2docker/certs/boot2docker-vm
+        - DOCKER_TLS_VERIFY=1
 registry:
     image: registry
     environment:
