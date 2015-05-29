@@ -26,14 +26,11 @@ mesosslave:
         - MESOS_CONTAINERIZERS=docker,mesos
         - MESOS_ISOLATOR=cgroups/cpu,cgroups/mem
         - MESOS_LOG_DIR=/var/log
-        - DOCKER_HOST=tcp://192.168.59.103:2376
-        - DOCKER_CERT_PATH=/tmp/.boot2docker/certs/boot2docker-vm
-        - DOCKER_TLS_VERIFY=1
     volumes:
-        - /Users/adrianoprea/.boot2docker:/tmp/.boot2docker
-        - /usr/local/bin/docker:/usr/bin/docker
-        - /usr/include/sys:/sys:ro
-        - mesosslace-items:/var/log
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /usr/bin/docker:/usr/bin/docker
+        - /sys:/sys:ro
+        - ./mesosslave-items:/var/log
     expose:
         - "5051"
 marathon:
@@ -50,14 +47,10 @@ jenkins:
     volumes:
         - jenkins-items:/var/jenkins_home
         - ./jenkins-data:/var/jenkins_data
-        - /Users/adrianoprea/.boot2docker:/var/jenkins_home/.boot2docker
-        - /usr/local/bin/docker:/usr/bin/docker
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /usr/bin/docker:/usr/bin/docker
     ports:
         - "8081:8080"
-    environment:
-        - DOCKER_HOST=tcp://192.168.59.103:2376
-        - DOCKER_CERT_PATH=/var/jenkins_home/.boot2docker/certs/boot2docker-vm
-        - DOCKER_TLS_VERIFY=1
 registry:
     image: registry
     environment:

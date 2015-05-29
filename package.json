@@ -1,6 +1,7 @@
 {
-  "name": "Continuous whatever",
+  "name": "continuous-whatever",
   "version": "1.0.0",
+  "private" : true,
   "description": "",
   "main": "gulpfile.js",
   "scripts": {

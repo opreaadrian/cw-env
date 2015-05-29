@@ -26,8 +26,7 @@ function validateCode(task) {
 
     cp.exec(validateCommand, function (error, stdout, stderr) {
         process.stdout.write("-------------- " +
-                            colors.bgBlue("VALIDATE_CODE") +
-                            " running pre-commit suite" +
+                            colors.bgBlue("Le validating of le code.") +
                             " --------------\n");
         stdout && process.stdout.write(stdout);
         stderr && process.stderr.write(stderr);
