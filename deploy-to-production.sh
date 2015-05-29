@@ -9,7 +9,7 @@ else
 fi
 
 # destroy old application
-curl -X DELETE -H "Content-Type: application/json" http://${marathon}:8080/v2/apps/app
+curl -X DELETE -H "Content-Type: application/json" http://${marathon}:8080/v2/apps/continuous-whatever
 
 sleep 1
 
