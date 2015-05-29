@@ -36,14 +36,16 @@ mesosslave:
 marathon:
     image: mesosphere/marathon
     links:
-    - zookeeper:zookeeper
+        - zookeeper:zookeeper
     ports:
-    - "8080:8080"
+        - "8080:8080"
     # this image does not respect MARATHON_ env variables, so adding the params via command
     command: --master zk://zookeeper:2181/mesos --zk zk://zookeeper:2181/marathon
 
 jenkins:
     image: opreaadrian/jenkins
+    links:
+        - marathon:marathon
     volumes:
         - jenkins-items:/var/jenkins_home
         - .:/var/jenkins_data
