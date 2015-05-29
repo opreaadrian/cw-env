@@ -2,7 +2,7 @@
     "id": "continuous-whatever",
     "container": {
         "docker": {
-            "image": "192.168.59.103:5000/opreaadrian/continuous-whatever:latest",
+            "image": "localhost:5000/opreaadrian/continuous-whatever:latest",
             "network": "BRIDGE",
             "portMappings": [
                 {"containerPort": 8000, "servicePort": 8000}

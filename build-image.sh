@@ -7,5 +7,5 @@ else
 fi
 
 cd application
-docker build -t 192.168.59.103/opreaadrian/continuous-whatever:${version} .
+docker build -t localhost/opreaadrian/continuous-whatever:${version} .
 cd ..

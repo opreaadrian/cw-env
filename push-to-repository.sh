@@ -6,5 +6,4 @@ else
    version="${1}"
 fi
 
-docker push 192.168.59.103/opreaadrian/continuous-whatever:${version} .
-cd ..
+docker push localhost:5000/opreaadrian/continuous-whatever:${version} .
