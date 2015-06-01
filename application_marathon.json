@@ -5,11 +5,15 @@
             "image": "localhost:5000/opreaadrian/continuous-whatever:latest",
             "network": "BRIDGE",
             "portMappings": [
-                {"containerPort": 3000, "servicePort": 3001, "hostPort": 3002}
+                {
+		    "containerPort": 3000,
+		    "hostPort": 0, 
+		    "protocol" : "tcp"
+		}
             ]
         }
     },
-    "cpus": 0.2,
-    "mem": 256.0,
+    "cpus": 1,
+    "mem": 256,
     "instances": 1
 }
