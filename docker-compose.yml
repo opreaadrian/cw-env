@@ -1,7 +1,7 @@
 zookeeper:
     image: jplock/zookeeper:3.4.5
     ports:
-        - "2181"
+        - "2181:2181"
 mesosmaster:
     image: redjack/mesos-master:0.21.0
     hostname: mesosmaster
