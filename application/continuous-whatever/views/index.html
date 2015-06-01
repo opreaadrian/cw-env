@@ -241,7 +241,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     'use strict'
-    var socket = io.connect('http://localhost:3000');
+    var currentHost = "" + window.location.host;
+    var socket = io.connect(currentHost);
     socket.on('news', function (data) {
         console.log(data);
         socket.emit('my other event', {my: 'data'});
